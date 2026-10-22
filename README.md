@@ -27,7 +27,7 @@ git clone https://github.com/Hariharans1971/food-order-system.git
 cd food-order-system
 ```
 
-### 2. Create a virtual environment
+### 2. Create and activate a virtual environment
 
 ```bash
 python -m venv .venv
@@ -49,9 +49,29 @@ python -m pip install psycopg2-binary
 - Install and start PostgreSQL.
 - Create a database named `food_order`.
 - Create the tables expected by the application (users, hotels, menu, and orders).
-- Configure the database connection using environment variables or a local configuration file.
+- Copy `.env.example` as a reference for the required environment variables. The application reads environment variables directly; it does not automatically load a `.env` file.
 
-**Security note:** never commit real database passwords, API keys, or production credentials. If the project currently stores credentials in source code, replace them with local environment configuration before deploying it. Do not use sample credentials from a public README as real login details.
+Set the variables in Windows PowerShell:
+
+```powershell
+$env:FOOD_ORDER_DB_NAME = "food_order"
+$env:FOOD_ORDER_DB_USER = "postgres"
+$env:FOOD_ORDER_DB_PASSWORD = "your-local-password"
+$env:FOOD_ORDER_DB_HOST = "localhost"
+$env:FOOD_ORDER_DB_PORT = "5432"
+```
+
+Or in macOS/Linux:
+
+```bash
+export FOOD_ORDER_DB_NAME=food_order
+export FOOD_ORDER_DB_USER=postgres
+export FOOD_ORDER_DB_PASSWORD='your-local-password'
+export FOOD_ORDER_DB_HOST=localhost
+export FOOD_ORDER_DB_PORT=5432
+```
+
+Use your own local PostgreSQL password. Never commit real passwords, API keys, or production credentials. The `.gitignore` excludes local `.env` files and common Python artifacts.
 
 ### 5. Run
 
